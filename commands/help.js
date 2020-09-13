@@ -29,7 +29,13 @@ module.exports = {
 
         if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
         if (command.description) data.push(`**Description:** ${command.description}`);
-        if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+        if (command.guildOnly) data.push(`**Guild only:** ${command.guildOnly || false}`);
+        if(command.usage) {
+            const usages = [].concat(command.usage);
+            for (const usage of usages) {
+                data.push(`**Usage:** ${prefix}${command.name} ${usage}`);
+            }
+        }
 
         message.channel.send(data, {split: true});
     },
