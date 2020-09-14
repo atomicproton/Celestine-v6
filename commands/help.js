@@ -9,11 +9,19 @@ module.exports = {
         const {commands} = message.client;
 
         if (args.length === 0) { // List all commands
+            data.push("**Commands**");
             for (const commandName of commands.keys()) {
                 const command = commands.get(commandName);
-                data.push(`${prefix}${command.name} ${command.usage || ""}`);
+                let usage;
+                if (command.usage) {
+                    const usages = [].concat(command.usage);
+                    usage = usages[0];
+                } else {
+                    usage = "";
+                }
+                data.push(`- ${prefix}${command.name} ${usage}`);
             }
-            data.push(`\nTry \`${prefix}help [command name]\` to get info on a specific command`);
+            data.push(`Try \`${prefix}help [command name]\` to get info on a specific command`);
 
             return message.channel.send(data, {split: true});
         }
@@ -30,7 +38,7 @@ module.exports = {
         if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
         if (command.description) data.push(`**Description:** ${command.description}`);
         if (command.guildOnly) data.push(`**Guild only:** ${command.guildOnly || false}`);
-        if(command.usage) {
+        if (command.usage) {
             const usages = [].concat(command.usage);
             for (const usage of usages) {
                 data.push(`**Usage:** ${prefix}${command.name} ${usage}`);

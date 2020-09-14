@@ -1,5 +1,4 @@
-const discord = require("discord.js");
-const http = require('http');
+const Discord = require("discord.js");
 const utils = require("../utils");
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
     permissions: ["MANAGE_EMOJIS"],
 
     execute(message, args) {
-        if(args.length === 0) {
+        if (args.length === 0) {
             message.channel.send("What do you want me to steal...air??");
             return;
         }
@@ -19,29 +18,29 @@ module.exports = {
         let emojiName;
         let animated;
 
-        if(args.length === 1) {
+        if (args.length === 1) {
             const emojiInfo = parseCustomEmoji(message, args);
             emojiId = emojiInfo.emojiId;
             emojiName = emojiInfo.emojiName;
             animated = emojiInfo.animated;
-        } else if(args.length === 2 || args.length === 3) {
+        } else if (args.length === 2 || args.length === 3) {
             emojiId = args[0];
             emojiName = args[1];
 
-            if(!utils.isNumber(emojiId)) {
+            if (!utils.isNumber(emojiId)) {
                 message.channel.send("That's probably not a valid id");
                 return;
             }
 
-            if(emojiName.length > 20) {
+            if (emojiName.length > 20) {
                 message.channel.send("Try to keep the length of the name under 20 characters");
                 return;
             }
 
             // TODO: make this a function because apparently this is one of the better ways to do this in JS ._.
-            if(!args[2]) {
+            if (!args[2]) {
                 animated = false;
-            } else if(args[2].toLowerCase() === "true") {
+            } else if (args[2].toLowerCase() === "true") {
                 animated = true;
             } else if (args[2].toLowerCase() === "false") {
                 animated = false;
@@ -72,7 +71,7 @@ module.exports = {
                 message.channel.send(`Added the emoji: ${emoji.toString()}`);
             }).catch(err => {
             console.log(err);
-            if(err instanceof discord.DiscordAPIError && err.code === 50035) {
+            if (err instanceof Discord.DiscordAPIError && err.code === 50035) {
                 message.channel.send("Something went wrong with the api request; this usually is the result of an invalid emoji id.");
             } else {
                 message.channel.send("Failed to create emoji");

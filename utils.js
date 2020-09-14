@@ -4,7 +4,11 @@ function getRandom(list) {
 }
 
 function isNumber(text) {
-    return text.match(/^[0-9]+$/);
+    if(text) {
+        return text.match(/^[0-9]+$/);
+    } else {
+        return false;
+    }
 }
 
 module.exports = {getRandom, isNumber};
