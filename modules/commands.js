@@ -17,7 +17,7 @@ function runCommand(client, message) {
     // TODO: per server prefixes
     if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/);
+    const args = utils.parseArguments(message.content);
     const commandName = args.shift().toLowerCase();
 
     if (!commandName) {
