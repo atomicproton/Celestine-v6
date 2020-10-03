@@ -48,6 +48,7 @@ function runCommand(client, message) {
 
 module.exports = {registerCommands, runCommand};
 
+// TODO: move to utils
 function getIdiotSynonym() {
     const idiots = [];
     idiots.push("idiot");
