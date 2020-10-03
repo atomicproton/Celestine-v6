@@ -19,36 +19,36 @@ module.exports = {
 
         await message.guild.members.fetch(id)
             .then(user => {
-                if(user instanceof Discord.GuildMember) {
+                if (user instanceof Discord.GuildMember) {
                     foundMatching = true;
                     message.channel.send(guildMemberEmbed(user));
                 }
             }).catch(err => {
-            if (!(err instanceof Discord.DiscordAPIError && err.code === Discord.Constants.APIErrors.UNKNOWN_USER)) {
-                // Error other than user not found
-                throw err;
-            }
-        });
+                if (!(err instanceof Discord.DiscordAPIError && err.code === Discord.Constants.APIErrors.UNKNOWN_USER)) {
+                    // Error other than user not found
+                    throw err;
+                }
+            });
 
-        if(foundMatching) {
-            return ;
+        if (foundMatching) {
+            return;
         }
 
         await message.guild.roles.fetch(id)
             .then(role => {
-                if(role instanceof Discord.Role) {
+                if (role instanceof Discord.Role) {
                     foundMatching = true;
                     message.channel.send(roleEmbed(role));
                 }
             }).catch(err => {
-            if (!(err instanceof Discord.DiscordAPIError && err.code === Discord.Constants.APIErrors.UNKNOWN_ROLE)) {
-                // Error other than role not found
-                throw err;
-            }
-        });
+                if (!(err instanceof Discord.DiscordAPIError && err.code === Discord.Constants.APIErrors.UNKNOWN_ROLE)) {
+                    // Error other than role not found
+                    throw err;
+                }
+            });
 
-        if(foundMatching) {
-            return ;
+        if (foundMatching) {
+            return;
         }
 
         // TODO: end with idiot synonym
@@ -99,7 +99,7 @@ function roleEmbed(role) {
 
 // TODO: move to utils
 function getBooleanText(input) {
-    if(input) {
+    if (input) {
         return "✅ True";
     } else {
         return "❌ False";
