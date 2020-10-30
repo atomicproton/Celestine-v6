@@ -1,5 +1,6 @@
 const config = require("./config.json");
 const commands = require("./modules/commands");
+const someone = require("./modules/someone");
 const Discord = require("discord.js");
 
 console.log("Starting...");
@@ -15,4 +16,5 @@ client.once("ready", () => {
 
 client.on('message', message => {
     commands.runCommand(client, message);
+    someone.checkSomeone(client, message);
 });

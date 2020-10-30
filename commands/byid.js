@@ -100,8 +100,8 @@ function roleEmbed(role) {
 // TODO: move to utils
 function getBooleanText(input) {
     if (input) {
-        return "✅ True";
+        return "✅ Yes";
     } else {
-        return "❌ False";
+        return "❌ No";
     }
 }
