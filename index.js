@@ -12,7 +12,9 @@ async function init() {
     await client.login(config.token);
     commands.registerCommands(client);
 
+    console.log("Connecting to database...");
     await dbConnection.connect(client);
+    console.log("Connected!");
 
     client.once("ready", () => {
         console.log("Bot started");
