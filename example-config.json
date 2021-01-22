@@ -1,0 +1,7 @@
+{
+  "token": "a.b.c",
+  "client": "123",
+  "prefix": "!",
+  "currencyName": "ees",
+  "mongoUrl": "mongodb://"
+}

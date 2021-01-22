@@ -1,5 +1,5 @@
 const config = require('../config.json');
-const userAccessor = require("../data/accessors/userAccessor")
+const userAccessor = require("../data/accessors/userAccessor");
 
 module.exports = {
     name: config.currencyName,
