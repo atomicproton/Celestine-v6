@@ -13,6 +13,11 @@ module.exports = {
             data.push("**Commands**");
             for (const commandName of commands.keys()) {
                 const command = commands.get(commandName);
+                if (command.admin) {
+                    // Don't show admin commands in the help menu
+                    continue;
+                }
+
                 let usage;
                 if (command.usage) {
                     const usages = [].concat(command.usage);

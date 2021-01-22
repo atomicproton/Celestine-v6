@@ -37,6 +37,10 @@ function runCommand(client, message) {
         message.channel.send("I can't let you do that");
         return;
     }
+    if (command.admin && message.author.id !== "136711083313463296") {
+        message.channel.send("I can't let you do that");
+        return;
+    }
 
     try {
         command.execute(message, args);

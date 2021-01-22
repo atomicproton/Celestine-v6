@@ -89,7 +89,7 @@ function roleEmbed(role) {
         .setThumbnail(serverImageUrl)
         .addFields(
             {name: 'ID', value: `${role.id}`},
-            {name: 'Member Count', value: `${role.members.size}`},
+            {name: 'Member Count (WIP)', value: `${role.members.size}`}, // TODO: Only works with cached members now
             {name: 'Role Created At', value: `${role.createdAt}`},
             {name: 'Display Separately?', value: getBooleanText(role.hoist), inline: true},
             {name: 'Managed?', value: getBooleanText(role.managed), inline: true},
