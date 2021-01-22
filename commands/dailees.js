@@ -11,7 +11,6 @@ module.exports = {
 
         // await userAccessor.incrementBalance(id, 200);
         const date = new Date();
-        console.log(date.getTimezoneOffset());
         const user = await userAccessor.getOrInitUser(id);
         if (user.lastClaim
             && user.lastClaim.month >= date.getMonth()
