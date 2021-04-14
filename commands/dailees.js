@@ -31,6 +31,6 @@ module.exports = {
         await userAccessor.incrementBalance(message.author.id, eemount);
 
         const balance = await userAccessor.getBalance(id);
-        await message.channel.send(`You now have ${balance} ${config.currencyName} (+${eemount}!)`);
+        await message.channel.send(`You now have ${balance} ${config.currencyName} (+${eemount})!`);
     }
 };
