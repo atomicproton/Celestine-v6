@@ -75,4 +75,32 @@ function parseArguments(input) {
     return args;
 }
 
-module.exports = {getRandom, isNumber, parseArguments};
+/**
+ * Gets a guildMember for the given text
+ * @param text {String}
+ * @param guild {Discord.Guild}
+ * @returns {Discord.GuildMember}
+ */
+async function parseUser(text, guild) {
+    if (!text) {
+        return null;
+    }
+
+    if (isNumber(text)) {
+        // Probably an id
+        try {
+            return await guild.members.fetch(text);
+        } catch (err) {
+            return null;
+        }
+    }
+
+    const query = await guild.members.fetch({ query: text, limit: 1 });
+    if(query.size === 0) {
+        return null;
+    } else {
+        return query.values().next().value;
+    }
+}
+
+module.exports = {getRandom, isNumber, parseArguments, parseUser};
