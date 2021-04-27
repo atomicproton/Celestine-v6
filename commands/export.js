@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const path = require("path");
 const fs = require("fs");
+const utils = require("../utils");
 
 module.exports = {
     name: "export",
@@ -10,7 +11,7 @@ module.exports = {
 
     async execute(message, args) {
         if (!message.channel.permissionsFor(message.client.user).has(["READ_MESSAGE_HISTORY", "ATTACH_FILES", "USE_EXTERNAL_EMOJIS", "MANAGE_EMOJIS"])) {
-            message.channel.send("I don't have permissions to view message history, attach files, or use external emoji"); // TODO: insult
+            message.channel.send(`I don't have permissions to view message history, attach files, or use external emoji, ${utils.getIdiotSynonym()}`);
             return;
         }
 

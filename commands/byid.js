@@ -51,8 +51,7 @@ module.exports = {
             return;
         }
 
-        // TODO: end with idiot synonym
-        message.channel.send("I couldn't find anything to match the id.");
+        message.channel.send(`I couldn't find anything to match the id, ${utils.getIdiotSynonym()}`);
     }
 };
 

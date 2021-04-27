@@ -1,4 +1,8 @@
 const config = require('./config.json');
+const Discord = require("discord.js");
+const fs = require('fs');
+
+let idiots = null;
 
 /**
  * Gets a random value from the given array
@@ -95,12 +99,39 @@ async function parseUser(text, guild) {
         }
     }
 
-    const query = await guild.members.fetch({ query: text, limit: 1 });
-    if(query.size === 0) {
+    const query = await guild.members.fetch({query: text, limit: 1});
+    if (query.size === 0) {
         return null;
     } else {
         return query.values().next().value;
     }
 }
 
-module.exports = {getRandom, isNumber, parseArguments, parseUser};
+/**
+ * Gets a guildMember for the given text
+ * @param message {Discord.channel}
+ * @returns {boolean}
+ */
+async function checkBotPermissions(channel, permissions) {
+    return channel.hasPermission(channel.client.user).has(permissions);
+}
+
+/**
+ * Self explanatory
+ * @returns {string}
+ */
+function getIdiotSynonym() {
+    if(!idiots) {
+        const fileContents = fs.readFileSync('assets/idiot.txt').toString().split("\n");
+
+        idiots = [];
+        for (const line of fileContents) {
+            idiots.push(line.replace(/(\r\n|\n|\r)/gm, ""));
+        }
+        console.log(idiots);
+    }
+
+    return getRandom(idiots);
+}
+
+module.exports = {getRandom, isNumber, parseArguments, parseUser, getIdiotSynonym};

@@ -24,7 +24,7 @@ function runCommand(client, message) {
         return;
     }
     if (!client.commands.has(commandName)) { // Check command exists
-        message.channel.send(`that command doesn't exist, ${getIdiotSynonym()}`);
+        message.channel.send(`that command doesn't exist, ${utils.getIdiotSynonym()}`);
         return;
     }
 
@@ -51,15 +51,3 @@ function runCommand(client, message) {
 }
 
 module.exports = {registerCommands, runCommand};
-
-// TODO: move to utils
-function getIdiotSynonym() {
-    const idiots = [];
-    idiots.push("idiot");
-    idiots.push("ya dumdum");
-    idiots.push("dummy");
-    idiots.push("ya fool");
-    idiots.push("dumdum");
-
-    return utils.getRandom(idiots);
-}

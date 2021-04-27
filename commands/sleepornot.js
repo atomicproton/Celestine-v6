@@ -3,7 +3,7 @@ const userAccessor = require("../data/accessors/userAccessor");
 const Discord = require("discord.js");
 const path = require("path");
 const fs = require("fs");
-const Utils = require("../utils");
+const utils = require("../utils");
 
 module.exports = {
     name: "sleepornot",
@@ -14,11 +14,11 @@ module.exports = {
         const voiceChannel = message.member.voice.channel;
 
         if (!voiceChannel) {
-            message.channel.send("You must be in a voice channel to run this"); // TODO: insult
+            message.channel.send(`You must be in a voice channel to run this, ${utils.getIdiotSynonym()}`);
             return;
         }
         if (!voiceChannel.permissionsFor(message.client.user).has(["CONNECT", "VIEW_CHANNEL", "SPEAK"])) {
-            message.channel.send("I don't have permissions to join or speak in that channel"); // TODO: insult
+            message.channel.send(`I don't have permissions to join or speak in that channel, ${utils.getIdiotSynonym()}`);
             return;
         }
 
@@ -66,5 +66,5 @@ async function playAudio(voiceConnection, toPlay) {
 
 function getRandomFile(dir) {
     const files = fs.readdirSync(dir);
-    return path.join(dir, Utils.getRandom(files));
+    return path.join(dir, utils.getRandom(files));
 }
