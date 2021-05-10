@@ -7,7 +7,6 @@ let userSchema = new mongoose.Schema({
         type: String
     },
     balance: {
-        // type: mongoose.Types.Long,
         type: mongoose.Types.Long,
         min: [0, 'Balance cannot be less than 0'],
         required: [true, 'Balance is missing'],
